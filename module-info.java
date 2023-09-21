@@ -20,6 +20,7 @@ module EngineersApp {
 	requires org.apache.derby.tools;
 	requires org.apache.commons.pool2;
 	requires javax.annotation;
+	requires java.sql;
 	exports mainpackage;
 	exports mainpackage.company;
 	exports mainpackage.customer;
