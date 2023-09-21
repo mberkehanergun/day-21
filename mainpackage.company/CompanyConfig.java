@@ -2,6 +2,7 @@ package mainpackage.company;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,9 @@ public class CompanyConfig {
     private static int hourOfTask2 = 3;
     private static int hourOfTask3 = 4;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
     public static int getIANUM() {
         return IANUM;
     }
@@ -78,7 +82,7 @@ public class CompanyConfig {
     }
 
     @PostConstruct
-    public void initializeDAYNUMFromDatabase(JdbcTemplate jdbcTemplate) {
+    public void initializeDAYNUMFromDatabase() {
     	String selectQuery = "SELECT DAYNUM FROM COMPANYCONFIG";
         int initialDAYNUM = jdbcTemplate.queryForObject(selectQuery, Integer.class);
         DAYNUM = initialDAYNUM;
